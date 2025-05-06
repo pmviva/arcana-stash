@@ -21,23 +21,7 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "books")
-@DiscriminatorValue("BOOK")
-public class Book extends Media {
-    @Enumerated
-    private BookFormat format;
-
-    public BookFormat getFormat() {
-        return format;
-    }
-
-    public void setFormat(BookFormat format) {
-        this.format = format;
-    }
+public enum BookFormat {
+    DIGITAL,
+    PHYSICAL
 }
