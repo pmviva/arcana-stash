@@ -21,24 +21,7 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "videos")
-@DiscriminatorValue("VIDEO")
-public class Video extends Media {
-    @Enumerated(EnumType.STRING)
-    private VideoFormat format;
-
-    public VideoFormat getFormat() {
-        return format;
-    }
-
-    public void setFormat(VideoFormat format) {
-        this.format = format;
-    }
+public enum VideoFormat {
+    DIGITAL,
+    PHYSICAL
 }
