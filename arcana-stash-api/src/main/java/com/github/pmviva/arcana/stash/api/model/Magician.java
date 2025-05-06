@@ -22,6 +22,68 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.time.LocalDate;
 
 @Entity
-public class Magician extends AuditableEntity {}
+@Table(
+        name = "magicians",
+        indexes = {@Index(name = "idx_magicians_name", columnList = "name", unique = true)})
+public class Magician extends AuditableEntity {
+    /**
+     * Stores the name of the magician
+     */
+    private String name;
+
+    /**
+     * Stores the bio of the magician
+     */
+    private String bio;
+
+    /**
+     * Stores the birth date of the magician
+     */
+    @Temporal(TemporalType.DATE)
+    private LocalDate birthDate;
+
+    /**
+     * Stores the death date of the magician
+     */
+    @Temporal(TemporalType.DATE)
+    private LocalDate deathDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public LocalDate getDeathDate() {
+        return deathDate;
+    }
+
+    public void setDeathDate(LocalDate deathDate) {
+        this.deathDate = deathDate;
+    }
+}
