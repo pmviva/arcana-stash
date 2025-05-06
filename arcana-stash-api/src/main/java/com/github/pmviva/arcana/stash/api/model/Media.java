@@ -21,7 +21,51 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Index;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.time.LocalDate;
 
 @Entity
-public abstract class Media extends AuditableEntity {}
+@Table(
+        name = "media",
+        indexes = {@Index(name = "idx_media_name_type", columnList = "name, type", unique = true)})
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+public abstract class Media extends AuditableEntity {
+    private String name;
+    private String description;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate publicationDate;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+}
