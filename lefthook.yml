@@ -6,22 +6,8 @@ pre-commit:
     parallel: false
     commands:
         run-backend-check:
-            run: |
-                cd arcana-stash-api &&
-                ./gradlew check &&
-                cd ..
+            run: ./hooks/pre-commit/run-backend-check.sh
         run-backend-format:
-            run: |
-                cd arcana-stash-api &&
-                STASH_BEFORE=$(git stash list | wc -l) &&
-                git stash -q --keep-index &&
-                ./gradlew spotlessApply &&
-                git add . &&
-                STASH_AFTER=$(git stash list | wc -l) &&
-                if [ "$STASH_AFTER" -gt "$STASH_BEFORE" ]; then git stash pop -q; fi &&
-                cd ..
+            run: ./hooks/pre-commit/run-backend-format.sh
         run-backend-test:
-            run: |
-                cd arcana-stash-api &&
-                ./gradlew test &&
-                cd ..
+            run: ./hooks/pre-commit/run-backend-test.sh
