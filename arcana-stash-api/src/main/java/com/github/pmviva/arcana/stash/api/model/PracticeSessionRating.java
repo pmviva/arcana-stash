@@ -21,4 +21,9 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
-public enum PracticeSessionRating {}
+public enum PracticeSessionRating {
+    POOR,
+    FAIR,
+    GOOD,
+    EXCELLENT
+}
