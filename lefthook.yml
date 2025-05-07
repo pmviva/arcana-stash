@@ -8,7 +8,7 @@ pre-commit:
         - name: run-spotless
           run: |
               cd arcana-stash-api
-              git stash -u
+              git stash --keep-index
               ./gradlew spotlessApply
               git add .
               git stash pop
