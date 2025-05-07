@@ -31,9 +31,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AuditableEntity extends BaseEntity {
+    /**
+     * Stores the created at date of the auditable entity
+     */
     @CreatedDate
     private LocalDateTime createdAt;
 
+    /**
+     * Stores the updated at date of the auditable entity
+     */
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
