@@ -30,6 +30,9 @@ import jakarta.persistence.Table;
 @Table(name = "books")
 @DiscriminatorValue("BOOK")
 public class Book extends Media {
+    /**
+     * Stores the format of the book
+     */
     @Enumerated
     private BookFormat format;
 
