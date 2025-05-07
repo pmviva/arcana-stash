@@ -22,6 +22,40 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
-public class Prop extends AuditableEntity {}
+@Table(name = "props")
+<<<<<<< Updated upstream
+=======
+
+
+
+>>>>>>> Stashed changes
+public class Prop extends AuditableEntity {
+    /**
+     * Stores the name of the prop
+     */
+    private String name;
+
+    /**
+     * Stores the description of the prop
+     */
+    private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+}
