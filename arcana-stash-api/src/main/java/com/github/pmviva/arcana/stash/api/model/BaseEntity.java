@@ -29,6 +29,9 @@ import java.util.UUID;
 
 @MappedSuperclass
 public abstract class BaseEntity {
+    /**
+     * Stores the id of the base entity
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
