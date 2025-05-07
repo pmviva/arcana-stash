@@ -1,0 +1,15 @@
+###
+# LEFTHOOK CONFIGURATION FILE
+###
+
+pre-commit:
+    parallel: false
+    jobs:
+        - name: run-spotless
+          run: |
+              cd arcana-stash-api
+              git stash -u
+              ./gradlew spotlessApply
+              git add .
+              git stash pop
+              cd ..
