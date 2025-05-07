@@ -22,13 +22,10 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(
-        name = "tags",
-        indexes = {@Index(name = "idx_tags_name", columnList = "name", unique = true)})
+@Table(name = "tags")
 public class Tag extends AuditableEntity {
     private String name;
     private String description;
