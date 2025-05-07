@@ -26,6 +26,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import java.util.UUID;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @MappedSuperclass
 public abstract class BaseEntity {
@@ -42,5 +44,19 @@ public abstract class BaseEntity {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+
+        if (!(object instanceof BaseEntity baseEntity)) return false;
+
+        return new EqualsBuilder().append(getId(), baseEntity.getId()).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(getId()).toHashCode();
     }
 }
