@@ -22,6 +22,60 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
-public class User extends AuditableEntity {}
+@Table(name = "users")
+public class User extends AuditableEntity {
+    /**
+     * Stores the username of the user
+     */
+    private String username;
+
+    /**
+     * Stores the email of the user
+     */
+    private String email;
+
+    /**
+     * Stores the bio of the user
+     */
+    private String bio;
+
+    /**
+     * Stores the motto of the user
+     */
+    private String motto;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
+    }
+}
