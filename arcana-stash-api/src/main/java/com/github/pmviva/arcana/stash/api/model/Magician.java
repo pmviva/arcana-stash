@@ -22,16 +22,13 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.time.LocalDate;
 
 @Entity
-@Table(
-        name = "magicians",
-        indexes = {@Index(name = "idx_magicians_name", columnList = "name", unique = true)})
+@Table(name = "magicians")
 public class Magician extends AuditableEntity {
     /**
      * Stores the name of the magician
