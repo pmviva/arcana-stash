@@ -24,4 +24,30 @@ package com.github.pmviva.arcana.stash.api.model;
 import jakarta.persistence.Entity;
 
 @Entity
-public class PresentationScript extends AuditableEntity {}
+public class PresentationScript extends AuditableEntity {
+    /**
+     * Stores the name of the presentation script
+     */
+    private String name;
+
+    /**
+     * Stores the script of the presentation script
+     */
+    private String script;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getScript() {
+        return script;
+    }
+
+    public void setScript(String script) {
+        this.script = script;
+    }
+}
