@@ -22,15 +22,19 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(
-        name = "categories",
-        indexes = {@Index(name = "idx_categories_name", columnList = "name", unique = true)})
+@Table(name = "categories")
 public class Category extends AuditableEntity {
+    /**
+     * Stores the name of the category
+     */
     private String name;
+
+    /**
+     * Stores the description of the category
+     */
     private String description;
 
     public String getName() {
