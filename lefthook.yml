@@ -12,4 +12,5 @@ pre-commit:
               ./gradlew spotlessApply
               git add .
               git stash pop
+              git stash drop
               cd ..
