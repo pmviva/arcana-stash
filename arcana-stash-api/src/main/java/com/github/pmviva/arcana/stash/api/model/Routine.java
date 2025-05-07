@@ -22,13 +22,10 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(
-        name = "routines",
-        indexes = {@Index(name = "idx_routines_name", columnList = "name", unique = true)})
+@Table(name = "routines")
 public class Routine extends AuditableEntity {
     /**
      * Stores the name of the routine
