@@ -21,4 +21,8 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
-public enum EffectDifficulty {}
+public enum EffectDifficulty {
+    EASY,
+    MEDIUM,
+    HARD
+}
