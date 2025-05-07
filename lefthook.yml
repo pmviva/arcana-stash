@@ -4,13 +4,22 @@
 
 pre-commit:
     parallel: false
-    jobs:
-        - name: run-spotless
-          run: |
-              cd arcana-stash-api
-              git stash --keep-index
-              ./gradlew spotlessApply
-              git add .
-              git stash pop
-              git stash drop
-              cd ..
+    commands:
+        run-backend-check:
+            run: |
+                cd arcana-stash-api &&
+                ./gradlew check &&
+                cd ..
+        run-backend-format:
+            run: |
+                cd arcana-stash-api &&
+                git stash -q --keep-index &&
+                ./gradlew spotlessApply &&
+                git add . &&
+                git stash pop -q &&
+                cd ..
+        run-backend-test:
+            run: |
+                cd arcana-stash-api &&
+                ./gradlew test &&
+                cd ..
