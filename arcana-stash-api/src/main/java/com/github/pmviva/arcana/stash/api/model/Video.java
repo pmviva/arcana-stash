@@ -31,6 +31,9 @@ import jakarta.persistence.Table;
 @Table(name = "videos")
 @DiscriminatorValue("VIDEO")
 public class Video extends Media {
+    /**
+     * Stores the video format
+     */
     @Enumerated(EnumType.STRING)
     private VideoFormat format;
 
