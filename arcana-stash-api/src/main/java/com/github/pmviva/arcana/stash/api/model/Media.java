@@ -24,7 +24,6 @@ package com.github.pmviva.arcana.stash.api.model;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
@@ -33,9 +32,7 @@ import jakarta.persistence.TemporalType;
 import java.time.LocalDate;
 
 @Entity
-@Table(
-        name = "media",
-        indexes = {@Index(name = "idx_media_name_type", columnList = "name, type", unique = true)})
+@Table(name = "media")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Media extends AuditableEntity {
