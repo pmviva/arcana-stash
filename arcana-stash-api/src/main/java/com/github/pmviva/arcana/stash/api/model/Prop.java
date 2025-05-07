@@ -26,12 +26,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "props")
-<<<<<<< Updated upstream
-=======
-
-
-
->>>>>>> Stashed changes
 public class Prop extends AuditableEntity {
     /**
      * Stores the name of the prop
