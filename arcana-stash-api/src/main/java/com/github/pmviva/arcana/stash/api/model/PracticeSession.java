@@ -21,7 +21,76 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.time.LocalDate;
 
 @Entity
-public abstract class PracticeSession extends AuditableEntity {}
+@Table(name = "practice_sessions")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+public abstract class PracticeSession extends AuditableEntity {
+    /**
+     * Stores the session date of the session
+     */
+    @Column(name = "session_date")
+    @Temporal(TemporalType.DATE)
+    private LocalDate date;
+
+    /**
+     * Stores the duration of the session in minutes
+     */
+    private Integer duration;
+
+    /**
+     * Stores the notes of the session
+     */
+    private String notes;
+
+    /**
+     * Stores the rating of the session
+     */
+    @Enumerated(EnumType.STRING)
+    private PracticeSessionRating rating;
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public PracticeSessionRating getRating() {
+        return rating;
+    }
+
+    public void setRating(PracticeSessionRating rating) {
+        this.rating = rating;
+    }
+}
