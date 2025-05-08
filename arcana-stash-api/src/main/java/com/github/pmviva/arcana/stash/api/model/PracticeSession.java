@@ -21,7 +21,6 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
@@ -42,9 +41,8 @@ public abstract class PracticeSession extends AuditableEntity {
     /**
      * Stores the session date of the session
      */
-    @Column(name = "session_date")
     @Temporal(TemporalType.DATE)
-    private LocalDate date;
+    private LocalDate sessionDate;
 
     /**
      * Stores the duration of the session in minutes
@@ -62,12 +60,12 @@ public abstract class PracticeSession extends AuditableEntity {
     @Enumerated(EnumType.STRING)
     private PracticeSessionRating rating;
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getSessionDate() {
+        return sessionDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setSessionDate(LocalDate sessionDate) {
+        this.sessionDate = sessionDate;
     }
 
     public Integer getDuration() {
