@@ -3,29 +3,23 @@
 ###
 
 pre-commit:
-    parallel: false
     commands:
-        run-backend-check:
+        backend-lint:
             root: arcana-stash-api
             glob: "*.java"
             run: ./gradlew check
-        run-backend-format:
-            root: arcana-stash-api
-            glob: "*.java"
-            run: ./gradlew spotlessApply
-            stage_fixed: true
-        run-backend-test:
+        backend-test:
             root: arcana-stash-api
             glob: "*.java"
             run: ./gradlew test
 prepare-commit-msg:
     commands:
-        run-commit-message-generate:
+        commit-message-generate:
             interactive: true
             run: npm exec -- cz --hook
             env:
                 LEFTHOOK: 0
 commit-msg:
     commands:
-        run-commit-message-lint:
+        commit-message-lint:
             run: npm exec -- commitlint --color --edit {1}
