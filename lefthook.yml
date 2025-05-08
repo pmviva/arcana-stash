@@ -23,4 +23,4 @@ prepare-commit-msg:
 commit-msg:
     commands:
         run-commit-message-lint:
-            run: npm exec commitlint --edit
+            run: npm exec commitlint --color --edit .git/COMMIT_EDITMSG
