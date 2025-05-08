@@ -24,4 +24,69 @@ package com.github.pmviva.arcana.stash.api.model;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Effect extends AuditableEntity {}
+public class Effect extends AuditableEntity {
+    /**
+     * Stores the name of the effect
+     */
+    private String name;
+
+    /**
+     * Stores the setup of the effect
+     */
+    private String setup;
+
+    /**
+     * Stores the explanation of the effect
+     */
+    private String explanation;
+
+    /**
+     * Stores the duration of the effect in minutes
+     */
+    private Integer duration;
+
+    /**
+     * Stores the difficulty of the effect
+     */
+    private EffectDifficulty difficulty;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSetup() {
+        return setup;
+    }
+
+    public void setSetup(String setup) {
+        this.setup = setup;
+    }
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public EffectDifficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(EffectDifficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+}
