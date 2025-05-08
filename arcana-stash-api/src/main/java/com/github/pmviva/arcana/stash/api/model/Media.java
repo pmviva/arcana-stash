@@ -36,9 +36,19 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Media extends AuditableEntity {
+    /**
+     * Stores the name of the media
+     */
     private String name;
+
+    /**
+     * Stores the description of the media
+     */
     private String description;
 
+    /**
+     * Stores the publication date of the media
+     */
     @Temporal(TemporalType.DATE)
     private LocalDate publicationDate;
 
