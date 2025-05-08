@@ -6,7 +6,7 @@ pre-commit:
     parallel: false
     commands:
         run-backend-check:
-            source_dir: arcana-stash-api
+            root: arcana-stash-api
             run: ./gradlew check
         run-backend-format:
             run: ./hooks/pre-commit/run-backend-format.sh
@@ -14,13 +14,13 @@ pre-commit:
             run: ./hooks/pre-commit/run-backend-test.sh
 prepare-commit-msg:
     commands:
-    run-commit-message-generate:
-        interactive: true
-        run: npm run cz --hook
-        env:
-            LEFTHOOK: 0
+        run-commit-message-generate:
+            interactive: true
+            run: npm exec cz --hook
+            env:
+                LEFTHOOK: 0
 
 commit-msg:
     commands:
-    run-commit-message-lint:
-        run: npm run commitlint --edit {1}
+        run-commit-message-lint:
+            run: npm exec commitlint --edit {1}
