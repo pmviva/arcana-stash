@@ -21,7 +21,11 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "video_effect_references")
+@DiscriminatorValue("VIDEO")
 public class VideoEffectReference extends MediaEffectReference {}
