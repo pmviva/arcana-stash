@@ -31,6 +31,11 @@ public class Effect extends AuditableEntity {
     private String name;
 
     /**
+     * Stores the duration of the effect in minutes
+     */
+    private Integer duration;
+
+    /**
      * Stores the setup of the effect
      */
     private String setup;
@@ -39,11 +44,6 @@ public class Effect extends AuditableEntity {
      * Stores the explanation of the effect
      */
     private String explanation;
-
-    /**
-     * Stores the duration of the effect in minutes
-     */
-    private Integer duration;
 
     /**
      * Stores the difficulty of the effect
@@ -56,6 +56,14 @@ public class Effect extends AuditableEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public String getSetup() {
@@ -72,14 +80,6 @@ public class Effect extends AuditableEntity {
 
     public void setExplanation(String explanation) {
         this.explanation = explanation;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
     }
 
     public EffectDifficulty getDifficulty() {
