@@ -2,8 +2,6 @@
 # LEFTHOOK CONFIGURATION FILE
 ###
 
-verbose: true
-
 pre-commit:
     parallel: false
     commands:
@@ -18,11 +16,11 @@ prepare-commit-msg:
     commands:
         run-commit-message-generate:
             interactive: true
-            run: npm exec cz --hook
+            run: npm exec -- cz --hook
             env:
                 LEFTHOOK: 0
 
 commit-msg:
     commands:
         run-commit-message-lint:
-            run: npm exec commitlint --color --edit
+            run: npm exec -- commitlint --color --edit {1}
