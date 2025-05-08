@@ -118,6 +118,11 @@ dependencies {
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 
     /**
+     * DEFINES THE COMPILE ONLY DEPENDENCIES
+     */
+    compileOnly         'com.github.spotbugs:spotbugs-annotations:4.9.3'
+
+    /**
      * DEFINES THE DEVELOPMENT ONLY DEPENDENCIES
      */
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
