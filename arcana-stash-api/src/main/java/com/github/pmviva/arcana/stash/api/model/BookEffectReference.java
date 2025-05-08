@@ -21,7 +21,11 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "book_effect_references")
+@DiscriminatorValue("BOOK")
 public class BookEffectReference extends MediaEffectReference {}
