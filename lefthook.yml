@@ -7,11 +7,17 @@ pre-commit:
     commands:
         run-backend-check:
             root: arcana-stash-api
+            glob: "*.java"
             run: ./gradlew check
         run-backend-format:
-            run: ./hooks/pre-commit/run-backend-format.sh
+            root: arcana-stash-api
+            glob: "*.java"
+            run: ./gradlew spotlessApply
+            stage_fixed: true
         run-backend-test:
-            run: ./hooks/pre-commit/run-backend-test.sh
+            root: arcana-stash-api
+            glob: "*.java"
+            run: ./gradlew test
 prepare-commit-msg:
     commands:
         run-commit-message-generate:
@@ -19,7 +25,6 @@ prepare-commit-msg:
             run: npm exec -- cz --hook
             env:
                 LEFTHOOK: 0
-
 commit-msg:
     commands:
         run-commit-message-lint:
