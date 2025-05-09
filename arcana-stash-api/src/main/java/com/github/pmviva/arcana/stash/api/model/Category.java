@@ -22,7 +22,10 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -36,6 +39,13 @@ public class Category extends AuditableEntity {
      * Stores the description of the category
      */
     private String description;
+
+    /**
+     * Stores the effects of the category
+     */
+    @ManyToMany
+    @JoinTable(name = "effect_category_assignments")
+    private Set<Effect> effects = Set.of();
 
     public String getName() {
         return name;
@@ -51,5 +61,13 @@ public class Category extends AuditableEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Effect> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(Set<Effect> effects) {
+        this.effects = effects;
     }
 }

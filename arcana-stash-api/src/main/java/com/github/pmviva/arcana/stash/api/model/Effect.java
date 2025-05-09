@@ -21,9 +21,16 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
+@Table(name = "effects")
 public class Effect extends AuditableEntity {
     /**
      * Stores the name of the effect
@@ -49,6 +56,26 @@ public class Effect extends AuditableEntity {
      * Stores the difficulty of the effect
      */
     private EffectDifficulty difficulty;
+
+    /**
+     * Stores the media effect references of the effect
+     */
+    @OneToMany(mappedBy = "effect", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaEffectReference> media = Set.of();
+
+    /**
+     * Stores the categories of the effect
+     */
+    @ManyToMany
+    @JoinTable(name = "effects_category_assignments")
+    private Set<Category> categories = Set.of();
+
+    /**
+     * Stores the categories of the effect
+     */
+    @ManyToMany
+    @JoinTable(name = "effects_tag_assignments")
+    private Set<Tag> tags = Set.of();
 
     public String getName() {
         return name;
@@ -88,5 +115,29 @@ public class Effect extends AuditableEntity {
 
     public void setDifficulty(EffectDifficulty difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public Set<MediaEffectReference> getMedia() {
+        return media;
+    }
+
+    public void setMedia(Set<MediaEffectReference> media) {
+        this.media = media;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 }

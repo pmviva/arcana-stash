@@ -22,10 +22,12 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "magicians")
@@ -51,6 +53,9 @@ public class Magician extends AuditableEntity {
      */
     @Temporal(TemporalType.DATE)
     private LocalDate deathDate;
+
+    @OneToMany(mappedBy = "author")
+    private Set<Media> media = Set.of();
 
     public String getName() {
         return name;
@@ -82,5 +87,13 @@ public class Magician extends AuditableEntity {
 
     public void setDeathDate(LocalDate deathDate) {
         this.deathDate = deathDate;
+    }
+
+    public Set<Media> getMedia() {
+        return media;
+    }
+
+    public void setMedia(Set<Media> media) {
+        this.media = media;
     }
 }

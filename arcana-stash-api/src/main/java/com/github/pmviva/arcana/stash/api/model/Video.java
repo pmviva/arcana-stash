@@ -21,11 +21,14 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "videos")
@@ -37,11 +40,25 @@ public class Video extends Media {
     @Enumerated(EnumType.STRING)
     private VideoFormat format;
 
+    /**
+     * Stores the effects of the video
+     */
+    @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<VideoEffectReference> effects = Set.of();
+
     public VideoFormat getFormat() {
         return format;
     }
 
     public void setFormat(VideoFormat format) {
         this.format = format;
+    }
+
+    public Set<VideoEffectReference> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(Set<VideoEffectReference> effects) {
+        this.effects = effects;
     }
 }

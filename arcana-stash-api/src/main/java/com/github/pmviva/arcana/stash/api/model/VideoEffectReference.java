@@ -23,9 +23,39 @@ package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "video_effect_references")
 @DiscriminatorValue("VIDEO")
-public class VideoEffectReference extends MediaEffectReference {}
+public class VideoEffectReference extends MediaEffectReference {
+    /**
+     * Stores the vide of the video effect reference
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "video_id")
+    private Video video;
+
+    /**
+     * Stores the minute of the video effect reference
+     */
+    private Integer minute;
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
+    }
+
+    public Integer getMinute() {
+        return minute;
+    }
+
+    public void setMinute(Integer minute) {
+        this.minute = minute;
+    }
+}

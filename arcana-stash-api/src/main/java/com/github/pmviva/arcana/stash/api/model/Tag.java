@@ -22,13 +22,30 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "tags")
 public class Tag extends AuditableEntity {
+    /**
+     * Stores the name of the tag
+     */
     private String name;
+
+    /**
+     * Stores the description of the tag
+     */
     private String description;
+
+    /**
+     * Stores the effects of the tag
+     */
+    @ManyToMany
+    @JoinTable(name = "effect_tag_assignments")
+    private Set<Effect> effects = Set.of();
 
     public String getName() {
         return name;
@@ -44,5 +61,13 @@ public class Tag extends AuditableEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Effect> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(Set<Effect> effects) {
+        this.effects = effects;
     }
 }

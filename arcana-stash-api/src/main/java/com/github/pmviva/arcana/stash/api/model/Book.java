@@ -21,10 +21,13 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "books")
@@ -36,11 +39,25 @@ public class Book extends Media {
     @Enumerated
     private BookFormat format;
 
+    /**
+     * Stores the effects of the book
+     */
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<BookEffectReference> effects = Set.of();
+
     public BookFormat getFormat() {
         return format;
     }
 
     public void setFormat(BookFormat format) {
         this.format = format;
+    }
+
+    public Set<BookEffectReference> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(Set<BookEffectReference> effects) {
+        this.effects = effects;
     }
 }

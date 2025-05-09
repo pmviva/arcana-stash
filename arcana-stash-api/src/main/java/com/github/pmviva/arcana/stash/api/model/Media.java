@@ -26,6 +26,8 @@ import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -52,6 +54,13 @@ public abstract class Media extends AuditableEntity {
     @Temporal(TemporalType.DATE)
     private LocalDate publicationDate;
 
+    /**
+     * Stores the author of the media
+     */
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Magician author;
+
     public String getName() {
         return name;
     }
@@ -74,5 +83,13 @@ public abstract class Media extends AuditableEntity {
 
     public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public Magician getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Magician author) {
+        this.author = author;
     }
 }

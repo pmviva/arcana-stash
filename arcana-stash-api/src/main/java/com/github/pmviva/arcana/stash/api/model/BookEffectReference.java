@@ -23,9 +23,39 @@ package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "book_effect_references")
 @DiscriminatorValue("BOOK")
-public class BookEffectReference extends MediaEffectReference {}
+public class BookEffectReference extends MediaEffectReference {
+    /**
+     * Stores the book of the book effect reference
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    /**
+     * Stores the page of the book effect reference
+     */
+    private Integer page;
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+}

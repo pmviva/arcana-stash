@@ -26,10 +26,27 @@ import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "media_effect_references")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
-public abstract class MediaEffectReference extends AuditableEntity {}
+public abstract class MediaEffectReference extends AuditableEntity {
+    /**
+     * Stores the effect of the media effect reference
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "effect_id")
+    private Effect effect;
+
+    public Effect getEffect() {
+        return effect;
+    }
+
+    public void setEffect(Effect effect) {
+        this.effect = effect;
+    }
+}
