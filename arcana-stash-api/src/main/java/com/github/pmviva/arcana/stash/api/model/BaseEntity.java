@@ -25,8 +25,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 import java.util.UUID;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @MappedSuperclass
@@ -38,6 +38,12 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    /**
+     * Stores the version of the base entity
+     */
+    @Version
+    private int version;
+
     public UUID getId() {
         return id;
     }
@@ -46,13 +52,12 @@ public abstract class BaseEntity {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
+    public int getVersion() {
+        return version;
+    }
 
-        if (!(object instanceof BaseEntity baseEntity)) return false;
-
-        return new EqualsBuilder().append(getId(), baseEntity.getId()).isEquals();
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     @Override
