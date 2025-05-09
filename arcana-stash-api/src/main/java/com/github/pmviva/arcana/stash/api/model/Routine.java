@@ -22,7 +22,11 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "routines")
@@ -36,6 +40,19 @@ public class Routine extends AuditableEntity {
      * Stores the description of the routine
      */
     private String description;
+
+    /**
+     * Stores the effects of the routine
+     */
+    @ManyToMany
+    @JoinTable(name = "routine_effect_usages")
+    private Set<Effect> effects = Set.of();
+
+    /**
+     * Stores the practice sessions of the routine
+     */
+    @OneToMany(mappedBy = "routine")
+    private Set<RoutinePracticeSession> practiceSessions = Set.of();
 
     public String getName() {
         return name;
@@ -51,5 +68,21 @@ public class Routine extends AuditableEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Effect> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(Set<Effect> effects) {
+        this.effects = effects;
+    }
+
+    public Set<RoutinePracticeSession> getPracticeSessions() {
+        return practiceSessions;
+    }
+
+    public void setPracticeSessions(Set<RoutinePracticeSession> practiceSessions) {
+        this.practiceSessions = practiceSessions;
     }
 }

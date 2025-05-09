@@ -22,6 +22,53 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class EffectPropUsage extends AuditableEntity {}
+@Table(name = "effect_prop_usages")
+public class EffectPropUsage extends AuditableEntity {
+    /**
+     * Stores the effect of the effect prop usage
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "effect_id", nullable = false)
+    private Effect effect;
+
+    /**
+     * Stores the prop of the effect prop usage
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "prop_id", nullable = false)
+    private Prop prop;
+
+    /**
+     * Stores the quantity of the effect prop usage
+     */
+    private Integer quantity;
+
+    public Effect getEffect() {
+        return effect;
+    }
+
+    public void setEffect(Effect effect) {
+        this.effect = effect;
+    }
+
+    public Prop getProp() {
+        return prop;
+    }
+
+    public void setProp(Prop prop) {
+        this.prop = prop;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+}

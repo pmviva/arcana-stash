@@ -35,13 +35,13 @@ public class BookEffectReference extends MediaEffectReference {
      * Stores the book of the book effect reference
      */
     @ManyToOne(optional = false)
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
     /**
-     * Stores the page of the book effect reference
+     * Stores the page reference of the book effect reference
      */
-    private Integer page;
+    private Integer pageReference;
 
     public Book getBook() {
         return book;
@@ -51,11 +51,11 @@ public class BookEffectReference extends MediaEffectReference {
         this.book = book;
     }
 
-    public Integer getPage() {
-        return page;
+    public Integer getPageReference() {
+        return pageReference;
     }
 
-    public void setPage(Integer page) {
-        this.page = page;
+    public void setPageReference(Integer pageReference) {
+        this.pageReference = pageReference;
     }
 }

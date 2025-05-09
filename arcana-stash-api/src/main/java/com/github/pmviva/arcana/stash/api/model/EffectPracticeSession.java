@@ -23,9 +23,26 @@ package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "effect_practice_sessions")
 @DiscriminatorValue("EFFECT")
-public class EffectPracticeSession extends PracticeSession {}
+public class EffectPracticeSession extends PracticeSession {
+    /**
+     * Stores the effect of the effect practice session
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "effect_id", nullable = false)
+    private Effect effect;
+
+    public Effect getEffect() {
+        return effect;
+    }
+
+    public void setEffect(Effect effect) {
+        this.effect = effect;
+    }
+}

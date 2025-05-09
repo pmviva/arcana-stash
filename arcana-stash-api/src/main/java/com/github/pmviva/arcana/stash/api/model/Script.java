@@ -22,18 +22,30 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
-public class PresentationScript extends AuditableEntity {
+@Table(name = "scripts")
+public class Script extends AuditableEntity {
     /**
-     * Stores the name of the presentation script
+     * Stores the name of the script
      */
     private String name;
 
     /**
-     * Stores the script of the presentation script
+     * Stores the patter of the script
      */
-    private String script;
+    private String patter;
+
+    /**
+     * Stores the effects of the script
+     */
+    @ManyToMany
+    @JoinTable(name = "effect_script_usages")
+    private Set<Effect> effects = Set.of();
 
     public String getName() {
         return name;
@@ -43,11 +55,19 @@ public class PresentationScript extends AuditableEntity {
         this.name = name;
     }
 
-    public String getScript() {
-        return script;
+    public String getPatter() {
+        return patter;
     }
 
-    public void setScript(String script) {
-        this.script = script;
+    public void setPatter(String patter) {
+        this.patter = patter;
+    }
+
+    public Set<Effect> getEffects() {
+        return effects;
+    }
+
+    public void setEffects(Set<Effect> effects) {
+        this.effects = effects;
     }
 }

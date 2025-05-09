@@ -58,6 +58,32 @@ public class Effect extends AuditableEntity {
     private EffectDifficulty difficulty;
 
     /**
+     * Stores the scripts of the effect
+     */
+    @ManyToMany
+    @JoinTable(name = "effect_script_usages")
+    private Set<Script> scripts = Set.of();
+
+    /**
+     * Stores the effect prop usages of the effect
+     */
+    @OneToMany(mappedBy = "effect", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EffectPropUsage> props = Set.of();
+
+    /**
+     * Stores the routines of the effect
+     */
+    @ManyToMany
+    @JoinTable(name = "routine_effect_usages")
+    private Set<Routine> routines = Set.of();
+
+    /**
+     * Stores the practice sessions of the effect
+     */
+    @OneToMany(mappedBy = "effect")
+    private Set<EffectPracticeSession> practiceSessions = Set.of();
+
+    /**
      * Stores the media effect references of the effect
      */
     @OneToMany(mappedBy = "effect", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -115,6 +141,38 @@ public class Effect extends AuditableEntity {
 
     public void setDifficulty(EffectDifficulty difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public Set<Script> getScripts() {
+        return scripts;
+    }
+
+    public void setScripts(Set<Script> scripts) {
+        this.scripts = scripts;
+    }
+
+    public Set<EffectPropUsage> getProps() {
+        return props;
+    }
+
+    public void setProps(Set<EffectPropUsage> props) {
+        this.props = props;
+    }
+
+    public Set<Routine> getRoutines() {
+        return routines;
+    }
+
+    public void setRoutines(Set<Routine> routines) {
+        this.routines = routines;
+    }
+
+    public Set<EffectPracticeSession> getPracticeSessions() {
+        return practiceSessions;
+    }
+
+    public void setPracticeSessions(Set<EffectPracticeSession> practiceSessions) {
+        this.practiceSessions = practiceSessions;
     }
 
     public Set<MediaEffectReference> getMedia() {

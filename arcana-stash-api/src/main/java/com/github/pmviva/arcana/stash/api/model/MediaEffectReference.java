@@ -39,7 +39,7 @@ public abstract class MediaEffectReference extends AuditableEntity {
      * Stores the effect of the media effect reference
      */
     @ManyToOne(optional = false)
-    @JoinColumn(name = "effect_id")
+    @JoinColumn(name = "effect_id", nullable = false)
     private Effect effect;
 
     public Effect getEffect() {

@@ -23,9 +23,26 @@ package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "routine_practice_sessions")
 @DiscriminatorValue("ROUTINE")
-public class RoutinePracticeSession extends PracticeSession {}
+public class RoutinePracticeSession extends PracticeSession {
+    /**
+     * Stores the routine of the routine practice session
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "routine_id", nullable = false)
+    private Routine routine;
+
+    public Routine getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(Routine routine) {
+        this.routine = routine;
+    }
+}

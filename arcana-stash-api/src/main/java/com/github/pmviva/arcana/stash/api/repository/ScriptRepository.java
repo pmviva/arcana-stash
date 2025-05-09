@@ -19,9 +19,13 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.pmviva.arcana.stash.api.service;
+package com.github.pmviva.arcana.stash.api.repository;
 
-import org.springframework.stereotype.Service;
+import com.github.pmviva.arcana.stash.api.model.Script;
+import java.util.UUID;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.ListPagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-@Service
-public class PresentationScriptService {}
+@Repository
+public interface ScriptRepository extends CrudRepository<Script, UUID>, ListPagingAndSortingRepository<Script, UUID> {}

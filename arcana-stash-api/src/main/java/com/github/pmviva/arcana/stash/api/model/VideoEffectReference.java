@@ -35,13 +35,13 @@ public class VideoEffectReference extends MediaEffectReference {
      * Stores the vide of the video effect reference
      */
     @ManyToOne(optional = false)
-    @JoinColumn(name = "video_id")
+    @JoinColumn(name = "video_id", nullable = false)
     private Video video;
 
     /**
-     * Stores the minute of the video effect reference
+     * Stores the time reference of the video effect reference
      */
-    private Integer minute;
+    private Integer timeReference;
 
     public Video getVideo() {
         return video;
@@ -51,11 +51,11 @@ public class VideoEffectReference extends MediaEffectReference {
         this.video = video;
     }
 
-    public Integer getMinute() {
-        return minute;
+    public Integer getTimeReference() {
+        return timeReference;
     }
 
-    public void setMinute(Integer minute) {
-        this.minute = minute;
+    public void setTimeReference(Integer timeReference) {
+        this.timeReference = timeReference;
     }
 }
