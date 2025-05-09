@@ -1,13 +1,21 @@
 # **ArcanaStash - A Magician’s Trick Organizer**
 
 1. About
-2. Running locally
-3. Authors
+2. Development environment
+3. Running locally
+4. Authors
 4. Contributing
 
 ## About
 
 **ArcanaStash** is the ultimate tool for magicians to store, organize, and perfect their magic tricks, routines, and performance notes. Whether you're a seasoned illusionist or an aspiring magician, ArcanaStash is designed to help you keep your craft organized and your performances seamless.
+
+## Development environment
+
+1. Install NodeJS 24 via NVM.
+2. Install Java 21 via SDKMAN.
+3. Clone this repository.
+4. Navigate to the root folder and run `npm install && npm exec -- lefthook install`
 
 ## Running locally
 
