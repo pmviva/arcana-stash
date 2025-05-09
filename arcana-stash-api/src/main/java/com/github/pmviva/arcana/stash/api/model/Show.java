@@ -21,7 +21,6 @@
 
 package com.github.pmviva.arcana.stash.api.model;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
@@ -88,12 +87,10 @@ public class Show extends AuditableEntity {
         this.showDate = showDate;
     }
 
-    @SuppressFBWarnings({"EI_EXPOSE_REP2", "EI_EXPOSE_REP"})
     public Venue getVenue() {
         return venue;
     }
 
-    @SuppressFBWarnings({"EI_EXPOSE_REP2", "EI_EXPOSE_REP"})
     public void setVenue(Venue venue) {
         this.venue = venue;
     }

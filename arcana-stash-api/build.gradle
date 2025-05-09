@@ -77,7 +77,14 @@ java {
 }
 
 /**
- * DEFINES THE SPOTLESS CONFIGURAITON
+ * DEFINES THE SPOTBUGS CONFIGURATION
+ */
+spotbugs {
+    excludeFilter = file("spotbugs-filter.xml")
+}
+
+/**
+ * DEFINES THE SPOTLESS CONFIGURATION
  */
 spotless {
     java {
@@ -116,11 +123,6 @@ dependencies {
      * DEFINES THE ANNOTATION PROCESSOR DEPENDENCIES
      */
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
-
-    /**
-     * DEFINES THE COMPILE ONLY DEPENDENCIES
-     */
-    compileOnly         'com.github.spotbugs:spotbugs-annotations:4.9.3'
 
     /**
      * DEFINES THE DEVELOPMENT ONLY DEPENDENCIES
