@@ -23,6 +23,8 @@ package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
@@ -30,6 +32,13 @@ import java.util.Set;
 @Entity
 @Table(name = "props")
 public class Prop extends AuditableEntity {
+    /**
+     * Stores the user of the prop
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     /**
      * Stores the name of the prop
      */
@@ -45,6 +54,14 @@ public class Prop extends AuditableEntity {
      */
     @OneToMany(mappedBy = "prop", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<EffectPropUsage> effects = Set.of();
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getName() {
         return name;

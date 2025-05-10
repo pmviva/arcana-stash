@@ -22,14 +22,23 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.util.Set;
 
 @Entity
 @Table(name = "scripts")
 public class Script extends AuditableEntity {
+    /**
+     * Stores the user of the script
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     /**
      * Stores the name of the script
      */
@@ -46,6 +55,14 @@ public class Script extends AuditableEntity {
     @ManyToMany
     @JoinTable(name = "effect_script_usages")
     private Set<Effect> effects = Set.of();
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getName() {
         return name;

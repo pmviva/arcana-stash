@@ -23,8 +23,10 @@ package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
@@ -32,6 +34,13 @@ import java.util.Set;
 @Entity
 @Table(name = "effects")
 public class Effect extends AuditableEntity {
+    /**
+     * Stores the user of the effect
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     /**
      * Stores the name of the effect
      */
@@ -102,6 +111,14 @@ public class Effect extends AuditableEntity {
     @ManyToMany
     @JoinTable(name = "effects_tag_assignments")
     private Set<Tag> tags = Set.of();
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getName() {
         return name;

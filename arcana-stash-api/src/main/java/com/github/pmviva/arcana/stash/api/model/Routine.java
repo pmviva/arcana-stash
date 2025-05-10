@@ -22,8 +22,10 @@
 package com.github.pmviva.arcana.stash.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
@@ -31,6 +33,13 @@ import java.util.Set;
 @Entity
 @Table(name = "routines")
 public class Routine extends AuditableEntity {
+    /**
+     * Stores the user of the routine
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     /**
      * Stores the name of the routine
      */
@@ -53,6 +62,14 @@ public class Routine extends AuditableEntity {
      */
     @OneToMany(mappedBy = "routine")
     private Set<RoutinePracticeSession> practiceSessions = Set.of();
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getName() {
         return name;

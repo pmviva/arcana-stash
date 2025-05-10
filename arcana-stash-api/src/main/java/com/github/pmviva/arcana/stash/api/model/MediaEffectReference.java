@@ -36,11 +36,26 @@ import jakarta.persistence.Table;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public abstract class MediaEffectReference extends AuditableEntity {
     /**
+     * Stores the user of the media effect reference
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    /**
      * Stores the effect of the media effect reference
      */
     @ManyToOne(optional = false)
     @JoinColumn(name = "effect_id", nullable = false)
     private Effect effect;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Effect getEffect() {
         return effect;

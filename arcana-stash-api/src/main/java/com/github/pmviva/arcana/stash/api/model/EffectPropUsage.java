@@ -30,6 +30,13 @@ import jakarta.persistence.Table;
 @Table(name = "effect_prop_usages")
 public class EffectPropUsage extends AuditableEntity {
     /**
+     * Stores the user of the effect prop usage
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    /**
      * Stores the effect of the effect prop usage
      */
     @ManyToOne(optional = false)
@@ -47,6 +54,14 @@ public class EffectPropUsage extends AuditableEntity {
      * Stores the quantity of the effect prop usage
      */
     private Integer quantity;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Effect getEffect() {
         return effect;

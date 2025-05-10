@@ -39,6 +39,13 @@ import java.time.LocalDate;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Media extends AuditableEntity {
     /**
+     * Stores the user of the media
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    /**
      * Stores the name of the media
      */
     private String name;
@@ -60,6 +67,14 @@ public abstract class Media extends AuditableEntity {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Magician author;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getName() {
         return name;

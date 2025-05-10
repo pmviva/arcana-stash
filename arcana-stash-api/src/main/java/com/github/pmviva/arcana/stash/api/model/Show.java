@@ -26,6 +26,8 @@ import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -34,6 +36,13 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "shows")
 public class Show extends AuditableEntity {
+    /**
+     * Stores the user of the show
+     */
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     /**
      * Stores the name of the show
      */
@@ -62,6 +71,14 @@ public class Show extends AuditableEntity {
         @AttributeOverride(name = "country", column = @Column(name = "venue_country"))
     })
     private Venue venue;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getName() {
         return name;
