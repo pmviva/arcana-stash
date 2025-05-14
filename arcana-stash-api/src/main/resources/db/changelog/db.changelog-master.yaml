@@ -1,0 +1,5 @@
+###
+# LIQUIBASE DB CHANGELOG MASTER CONFIGURATION FILE
+###
+
+databaseChangeLog: []

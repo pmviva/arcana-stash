@@ -1,0 +1,28 @@
+{
+  "name": "arcana-stash",
+  "version": "0.0.1",
+  "private": "true",
+  "description": "A digital organizer for magicians to store, track, and perfect tricks, routines, and performances. Built with Spring Boot, Spring Security, Angular, and PostgreSQL.",
+  "homepage": "https://github.com/pmviva/arcana-stash#readme",
+  "bugs": {
+    "url": "https://github.com/pmviva/arcana-stash/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmviva/arcana-stash.git"
+  },
+  "license": "MIT",
+  "author": "Pablo Martin Viva",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "lefthook": "^1.11.12"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

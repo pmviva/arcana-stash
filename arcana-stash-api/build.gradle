@@ -1,0 +1,163 @@
+/**
+ * GRADLE BUILD CONFIGURATION FILE
+ */
+
+/**
+ * DEFINES THE PLUGINS
+ */
+plugins {
+  /**
+   * DEFINES THE SPOTLESS PLUGIN
+   */
+  id 'com.diffplug.spotless'           version '7.0.3'
+
+  /**
+   * DEFINES THE SPOTBUGS PLUGIN
+   */
+  id 'com.github.spotbugs'             version '6.1.9'
+
+  /**
+   * DEFINES THE SPRING DEPENDENCY MANAGEMENT PLUGIN
+   */
+  id 'io.spring.dependency-management' version '1.1.7'
+
+  /**
+   * DEFINES THE JACOCO PLUGIN
+   */
+  id 'jacoco'
+
+  /**
+   * DEFINES THE JAVA PLUGIN
+   */
+  id 'java'
+
+  /**
+   * DEFINES THE SPRING FRAMEWORK BOOT PLUGIN
+   */
+  id 'org.springframework.boot'        version '3.4.5'
+}
+
+/**
+ * DEFINES THE GROUP PROPERTY
+ */
+group   = 'com.github.pmviva'
+
+/**
+ * DEFINES THE VERSION PROPERTY
+ */
+version = '0.0.1-SNAPSHOT'
+
+/**
+ * DEFINES THE JACOCO TEST REPORT CONFIGURATION
+ */
+jacocoTestReport {
+  dependsOn test
+}
+
+/**
+ * DEFINES THE JACOCO TEST COVERAGE VERIFICATION CONFIGURATION
+ */
+jacocoTestCoverageVerification {
+  violationRules {
+    rule {
+      limit {
+        minimum = 0.7
+      }
+    }
+  }
+}
+
+/**
+ * DEFINES THE JAVA CONFIGURATION
+ */
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(21)
+  }
+}
+
+/**
+ * DEFINES THE SPOTBUGS CONFIGURATION
+ */
+spotbugs {
+  excludeFilter = file("spotbugs-filter.xml")
+}
+
+/**
+ * DEFINES THE SPOTLESS CONFIGURATION
+ */
+spotless {
+  java {
+    endWithNewline()
+    importOrder()
+    palantirJavaFormat()
+    removeUnusedImports()
+    toggleOffOn()
+    trimTrailingWhitespace()
+  }
+}
+
+/**
+ * DEFINES THE TEST CONFIGURATION
+ */
+test {
+  finalizedBy jacocoTestReport
+  testLogging {
+    events 'passed', 'skipped', 'failed'
+  }
+  useJUnitPlatform()
+}
+
+/**
+ * DEFINES THE REPOSITORIES
+ */
+repositories {
+  mavenCentral()
+}
+
+/**
+ * DEFINES THE DEPENDENCIES
+ */
+dependencies {
+  /**
+   * DEFINES THE ANNOTATION PROCESSOR DEPENDENCIES
+   */
+  annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+
+  /**
+   * DEFINES THE DEVELOPMENT ONLY DEPENDENCIES
+   */
+  developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+
+  /**
+   * DEFINES THE IMPLEMENTATION DEPENDENCIES
+   */
+  implementation 'org.liquibase:liquibase-core'
+  implementation 'org.mapstruct:mapstruct:1.6.3'
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  implementation 'org.springframework.boot:spring-boot-starter-mail'
+  implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-validation'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+
+  /**
+   * DEFINES THE RUNTIME ONLY DEPENDENCIES
+   */
+  runtimeOnly 'org.postgresql:postgresql'
+
+  /**
+   * DEFINES THE TEST IMPLEMENTATION DEPENDENCIES
+   */
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+  testImplementation 'org.springframework.security:spring-security-test'
+  testImplementation 'org.testcontainers:junit-jupiter'
+  testImplementation 'org.testcontainers:postgresql'
+
+  /**
+   * DEFINES THE TEST RUNTIME ONLY DEPENDENCIES
+   */
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}

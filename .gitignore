@@ -1,0 +1,8 @@
+###
+# GITIGNORE CONFIGURATION FILE
+###
+
+###
+# NODE FILE CONFIGURATION
+###
+node_modules

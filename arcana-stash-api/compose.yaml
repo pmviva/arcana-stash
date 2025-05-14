@@ -1,0 +1,14 @@
+###
+# COMPOSE CONFIGURATION FILE
+###
+
+services:
+  postgres:
+    image: postgres:17.4
+    container_name: postgres
+    environment:
+      POSTGRES_DB: arcana-stash
+      POSTGRES_PASSWORD: arcana-stash-password
+      POSTGRES_USER: arcana-stash-user
+    ports:
+      - 5432:5432

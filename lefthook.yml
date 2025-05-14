@@ -1,0 +1,25 @@
+###
+# LEFTHOOK CONFIGURATION FILE
+###
+
+pre-commit:
+  commands:
+    backend-lint:
+      root: arcana-stash-api
+      glob: "*.java"
+      run: ./gradlew check
+    backend-test:
+      root: arcana-stash-api
+      glob: "*.java"
+      run: ./gradlew test
+prepare-commit-msg:
+  commands:
+    commit-message-generate:
+      interactive: true
+      run: npm exec -- cz --hook
+      env:
+        LEFTHOOK: "0"
+commit-msg:
+  commands:
+    commit-message-lint:
+      run: npm exec -- commitlint --color --edit {1}
